@@ -7,6 +7,7 @@ COPY package.json /home/node/app
 RUN npm install
 
 COPY public /home/node/app/public
+COPY data /home/node/app/data
 COPY bin /home/node/app/bin
 COPY src /home/node/app/src
 

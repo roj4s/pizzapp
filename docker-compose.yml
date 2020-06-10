@@ -24,5 +24,6 @@ services:
         DB_NAME: 'db'
         DB_CONNECT_RETRY_DELAY: 5
         IMAGES_PATH: '/home/node/app/public/images'
+        SEEDS_DATA_PATH: '/home/node/app/data/datafinity_data_extraction'
     volumes:
         - ./api/src:/home/node/app/src
