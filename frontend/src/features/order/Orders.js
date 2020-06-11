@@ -5,6 +5,8 @@ import {
     selectOrderTotal
 } from './orderSlice';
 
+import OrderCard from './OrderCard';
+import './Order.css';
 
 export default function Orders(){
 
@@ -15,8 +17,11 @@ export default function Orders(){
         <div>
             {
                 pizzas && Object.values(pizzas).length ? Object.values(pizzas).map(pizza=>(
-                             <div key={pizza.pizza.id}>
-                                 {pizza.pizza.name}-{pizza.quantity}
+                            <div key={pizza.pizza.id} className="OrderCard">
+                                <OrderCard
+                                    
+                                    pizza={pizza}
+                                />
                              </div>
                          ))
                 : (<div>No items added to cart</div>)

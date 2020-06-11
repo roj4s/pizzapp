@@ -40,6 +40,9 @@ export const orderSlice = createSlice({
         delete state.pizzas[id];
         state.orderTotal -= price * quantity;
       }
+      if(state.orderTotal < 0){
+        state.orderTotal = 0;
+      }
 
     },
     minusOneOrderPizza: (state, action) => {
@@ -48,7 +51,16 @@ export const orderSlice = createSlice({
       if(state.pizzas.hasOwnProperty(id))
       {
         state.pizzas[id].quantity -= 1;
-        state.orderTotal -= state.pizzas[id].price;
+        state.orderTotal -= state.pizzas[id].pizza.price;
+        
+        if(state.pizzas[id].quantity == 0){
+          delete state.pizzas[id];
+        }
+
+        if(state.orderTotal < 0){
+          state.orderTotal = 0;
+        }
+
       }
 
     }
