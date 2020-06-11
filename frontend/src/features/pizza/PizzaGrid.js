@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import PizzaCard  from './PizzaCard'; 
 
 import {
     selectPizzas
 } from './pizzaSlice';
 
+import './PizzaGrid.css';
 
 
 export default function PizzaGrid(){
@@ -12,15 +14,18 @@ export default function PizzaGrid(){
     const pizzas = useSelector(selectPizzas);    
 
     return (
-            <ul>
+            <div className='PizzaGrid'>
                 { 
                     pizzas && pizzas.length ? pizzas.map((pizza, i) => 
-                        (<li key={i}>
-                            <p>{pizza.name}</p>
-                        </li>)
-                    ) : (<li><p> Loading ...</p></li>)
+                        (
+                        <span className="Card" key={pizza.id}>
+                            <PizzaCard 
+                                pizza={pizza}
+                            />
+                        </span>)
+                    ) : (<div><p> Loading ...</p></div>)
                 }    
-            </ul>
+            </div>
               
     );
 

@@ -1,0 +1,24 @@
+.PizzaGrid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75vw;
+}
+
+.Card {
+    margin: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .PizzaGrid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+    }
+
+    .Card {
+        margin: 5px;
+    }
+
+  }
+

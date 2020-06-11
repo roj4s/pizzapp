@@ -12,6 +12,8 @@ function App() {
   const dispatch = useDispatch();
   dispatch(loadPizzas());
 
+  console.log(process.env.PATH);
+
   return (
     <div className="App">
       <header className="App-header">

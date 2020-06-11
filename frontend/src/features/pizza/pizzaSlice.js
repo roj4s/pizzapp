@@ -15,8 +15,10 @@ export const pizzaSlice = createSlice({
 
 const { load } = pizzaSlice.actions;
 
+
 export const loadPizzas = () => dispatch => {
   setTimeout(() => {
+    dummyPizzas.forEach((pizza, id) => { pizza.id = id;})
     console.log("Dispatching pizzas ...");
     dispatch(load(dummyPizzas));
   }, 5000);
