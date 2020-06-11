@@ -6,6 +6,7 @@ import {
 } from './features/pizza/pizzaSlice';
 
 import './App.css';
+import Orders from './features/order/Orders';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <PizzaGrid />
+        <Orders />
       </header>
     </div>
   );

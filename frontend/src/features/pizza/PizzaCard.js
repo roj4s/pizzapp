@@ -7,6 +7,11 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import { useDispatch } from 'react-redux';
+
+import {
+  addOrderPizza
+} from '../order/orderSlice';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PizzaCard(props) {
 
+  const dispatch = useDispatch();
+
   const pizza = props.pizza;
   const classes = useStyles();
   const contentMaxChars = 80;
@@ -47,6 +54,7 @@ export default function PizzaCard(props) {
       <CardActions >        
         <IconButton
             className={classes.addIcon} 
+            onClick={()=>{ dispatch(addOrderPizza(props.pizza)); }}
             aria-label="add">
           <AddShoppingCartIcon />
         </IconButton>        
