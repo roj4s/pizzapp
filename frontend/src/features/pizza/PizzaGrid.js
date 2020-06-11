@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PizzaCard  from './PizzaCard'; 
 
 import {
-    selectPizzas
+    selectPizzas, selectErrorFetching
 } from './pizzaSlice';
 
 import './PizzaGrid.css';
@@ -11,7 +11,8 @@ import './PizzaGrid.css';
 
 export default function PizzaGrid(){
 
-    const pizzas = useSelector(selectPizzas);    
+    const pizzas = useSelector(selectPizzas);  
+    const errorFetching = useSelector(selectErrorFetching);
 
     return (
             <div className='PizzaGrid'>
@@ -23,7 +24,7 @@ export default function PizzaGrid(){
                                 pizza={pizza}
                             />
                         </span>)
-                    ) : (<div><p> Loading ...</p></div>)
+                    ) : (errorFetching ? (<div>Something went wrong fetching data </div>) : (<div><p> Loading ...</p></div>))
                 }    
             </div>
               

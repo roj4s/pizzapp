@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { useDispatch } from 'react-redux';
 
+import PizzaApi from './api';
+
 import {
   addOrderPizza
 } from '../order/orderSlice';
@@ -43,7 +45,7 @@ export default function PizzaCard(props) {
     <Card className={classes.root}>      
       <CardMedia
         className={classes.media}
-        image="https://image.freepik.com/fotos-gratis/gotas-de-oleo-na-imagem-abstrata-padrao-psicodelico-de-agua_23-2148290141.jpg"
+        image={PizzaApi.getImageUrlFromImageName(pizza.image)}
       />
       <CardContent className={classes.content}>
         <Typography variant="body2" color="textSecondary" component="p">
