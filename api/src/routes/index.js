@@ -1,8 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
+const features = [
+  'pizza',
+];
 
-const pizzaRoutes = require('../features/pizza/routes');
+features.forEach(ft=>router.use(`/${ft}`, require(`../features/${ft}/routes`)));
 
 router.get('/', (req, res) => {
 
@@ -10,6 +13,5 @@ router.get('/', (req, res) => {
 
 });
 
-router.use('/pizza', pizzaRoutes);
 
 module.exports = router;

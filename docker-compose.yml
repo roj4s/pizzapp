@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'db'
+      MYSQL_USER: 'db'
+      MYSQL_DB: 'db'
+      MYSQL_PASSWORD: 'db'
+      MYSQL_DATABASE: 'db'
+    ports:
+      - "3306:3306"
+  api:
+    build: ./api
+    ports:
+      - "8001:8001"
+    links:
+      - db
+    environment:
+        DB_HOST: db
+        DB_PORT: 3306
+        DB_USER: 'db'
+        DB_PASSWORD: 'db'
+        DB_NAME: 'db'
+        DB_CONNECT_RETRY_DELAY: 5
+        IMAGES_PATH: '/home/node/app/public/images'
+    volumes:
+        - ./api/src:/home/node/app/src

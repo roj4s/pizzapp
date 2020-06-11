@@ -1,15 +1,6 @@
-const get = async (id) => {
+const utilsFactory = require('../common/utilsFactory');
 
-    // TODO: DB querying here using param id
-    return {
-        id: id,
-        name: 'Dummy Pizza',
-        description: 'Just a dummy pizza',
-        price: 20.5,
-        currency: 'euros'
-    };
-
-}
+const get = async (query_object={}) => utilsFactory.repo_get_function('pizza', query_object)();
 
 
 module.exports = {

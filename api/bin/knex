@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Running knex $1 (when db is ready)..."
+echo $PATH
+
+while true; do
+    echo $1
+    knex --knexfile ./src/db/knexfile.js --debug $1
+    [ $? = 0 ] && break
+    echo "Trying to reconnect with db in $DB_CONNECT_RETRY_DELAY seconds ..." && sleep $DB_CONNECT_RETRY_DELAY
+done

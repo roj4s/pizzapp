@@ -1,26 +1,15 @@
 const router = require('express').Router();
 const repo = require('./repository');
+const utilsFactory = require('../common/utilsFactory');
 
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
 
-  try{
-    const {
-      id
-    } = req.body;
+  return utilsFactory.route_get_function(repo,
+    {"id": parseInt(req.params.id)})(req, res);
 
-    const pizza_obj = await repo.get(id);
-
-    if(!pizza_obj){
-      res.status(500).send();
-      return;
-    }
-
-    res.status(200).send(pizza_obj);
-  }
-  catch(err){
-    console.log(err);
-    res.status(500).send();
-  }
 });
+
+router.get('/', utilsFactory.route_get_function(repo));
+
 
 module.exports = router;
