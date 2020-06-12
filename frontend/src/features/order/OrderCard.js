@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Add from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
@@ -20,19 +19,28 @@ import {
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        height: '130px'
     },
     media: {
-        width: 100        
+        width: '150px'        
     },
     content: {
-        width: 200,
+        width: '200px',
+        height: '100%',
         padding: '5px',        
         textAlign: 'start',
-        marginLeft: '10px'
+        marginLeft: '10px',
+        position: 'relative'
     },
-    iconButton:{
-        marginLeft: 'auto'
+    buttonsCardActions: {
+        position: 'absolute',
+        padding: '5px',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center', 
+        bottom: '30px',
+        right: '5px'
     }
   }));
 
@@ -58,22 +66,24 @@ export default function OrderCard(props){
                 <Typography variant="subtitle1" color="textSecondary">
                     {`${quantity}x`}
                 </Typography>
-                
-            </CardContent>
-            <CardActions>
+
+                <div 
+                className={classes.buttonsCardActions}
+                >
                     <IconButton 
-                        className={classes.iconButton}
                         onClick={()=>dispatch(addOrderPizza(pizza))}
                         >
                         <Add />
                     </IconButton>
                     <IconButton 
-                        className={classes.iconButton}
                         onClick={()=>dispatch(minusOneOrderPizza(pizza))}
                         >
                         <Remove />
                     </IconButton>
-                </CardActions>
+                </div>
+                
+            </CardContent>
+            
             </div>
         </Card>
     );

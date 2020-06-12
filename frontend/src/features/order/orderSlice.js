@@ -8,7 +8,8 @@ export const orderSlice = createSlice({
     pizzas: {},
     orderTotal: 0,
     persistingOrder: false,
-    errorPersistingOrder: false
+    errorPersistingOrder: false,
+    showPersistingModal: false
   },
   reducers: {
     addOrderPizza: (state, action) => {
@@ -75,6 +76,11 @@ export const orderSlice = createSlice({
       state.errorPersistingOrder = action.payload;
 
     },
+    setShowPersistingModal: (state, action) => {
+
+      state.showPersistingModal = action.payload;
+
+    },
     clean: (state, action) => {
       state.pizzas = {};
       state.orderTotal = 0;
@@ -88,12 +94,15 @@ export const {
   deleteOrderPizza, 
   setPersistingOrder, 
   setErrorPersistingOrder, 
-  clean } = orderSlice.actions;
+  clean,
+  setShowPersistingModal
+ } = orderSlice.actions;
 
 export const selectOrderPizzas = state => state.order.pizzas;
 export const selectOrderTotal = state => state.order.orderTotal;
 export const selectErrorPersistingOrder = state => state.order.errorPersistingOrder;
 export const selectPersistingOrder = state => state.order.persistingOrder;
+export const selectShowPersistingModal = state => state.order.showPersistingModal;
 
 export const persistOrder = data => dispatch => {
   

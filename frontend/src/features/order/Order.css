@@ -1,3 +1,17 @@
 .OrderCard {
-    margin: 10px
+    margin: 5px;
 }
+
+.OrdersContainer {
+    width: 400px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Roboto;  
+    box-shadow: 8px 10px 25px 0px rgba(0,0,0,0.29);
+    -webkit-box-shadow: 8px 10px 25px 0px rgba(0,0,0,0.29);
+    -moz-box-shadow: 8px 10px 25px 0px rgba(0,0,0,0.29);
+}
+
