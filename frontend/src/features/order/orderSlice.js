@@ -1,11 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+import OrderApi from './api';
 
 
 export const orderSlice = createSlice({
   name: 'order',
   initialState: {
     pizzas: {},
-    orderTotal: 0
+    orderTotal: 0,
+    persistingOrder: false,
+    errorPersistingOrder: false
   },
   reducers: {
     addOrderPizza: (state, action) => {
@@ -15,7 +18,6 @@ export const orderSlice = createSlice({
       if(state.pizzas.hasOwnProperty(id)){
         
         state.pizzas[id].quantity += 1;
-        console.log("Added pizza existed");
 
       }
       else{
@@ -24,7 +26,6 @@ export const orderSlice = createSlice({
           pizza: action.payload,
           quantity: 1
         };
-        console.log("Added pizza new");
 
       }
 
@@ -53,7 +54,7 @@ export const orderSlice = createSlice({
         state.pizzas[id].quantity -= 1;
         state.orderTotal -= state.pizzas[id].pizza.price;
         
-        if(state.pizzas[id].quantity == 0){
+        if(state.pizzas[id].quantity === 0){
           delete state.pizzas[id];
         }
 
@@ -63,13 +64,56 @@ export const orderSlice = createSlice({
 
       }
 
-    }
+    },
+    setPersistingOrder: (state, action) => {
 
+      state.persistingOrder = action.payload;
+
+    },
+    setErrorPersistingOrder: (state, action) => {
+
+      state.errorPersistingOrder = action.payload;
+
+    },
+    clean: (state, action) => {
+      state.pizzas = {};
+      state.orderTotal = 0;
+    }
   },
 });
 
-export const { addOrderPizza, minusOneOrderPizza, deleteOrderPizza } = orderSlice.actions;
+export const { 
+  addOrderPizza, 
+  minusOneOrderPizza, 
+  deleteOrderPizza, 
+  setPersistingOrder, 
+  setErrorPersistingOrder, 
+  clean } = orderSlice.actions;
+
 export const selectOrderPizzas = state => state.order.pizzas;
 export const selectOrderTotal = state => state.order.orderTotal;
+export const selectErrorPersistingOrder = state => state.order.errorPersistingOrder;
+export const selectPersistingOrder = state => state.order.persistingOrder;
+
+export const persistOrder = data => dispatch => {
+  
+  dispatch(setErrorPersistingOrder(false));
+  dispatch(setPersistingOrder(true));
+
+  return OrderApi.createOrder(data).then(response => {
+    console.log(response);
+    if(response.success){
+      dispatch(setErrorPersistingOrder(false));
+      dispatch(clean());
+    }
+    else{
+      dispatch(setErrorPersistingOrder(true));
+    }    
+  })
+  .catch(error => dispatch(setErrorPersistingOrder(true)))
+  .finally(()=>dispatch(setPersistingOrder(false)));
+  
+
+};
 
 export default orderSlice.reducer;
