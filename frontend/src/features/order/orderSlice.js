@@ -9,7 +9,9 @@ export const orderSlice = createSlice({
     orderTotal: 0,
     persistingOrder: false,
     errorPersistingOrder: false,
-    showPersistingModal: false
+    showPersistingModal: false,
+    itemsTotal: 0,
+    showOrdersContainer: false
   },
   reducers: {
     addOrderPizza: (state, action) => {
@@ -31,6 +33,7 @@ export const orderSlice = createSlice({
       }
 
       state.orderTotal += action.payload.price;
+      state.itemsTotal += 1;
     },
     deleteOrderPizza: (state, action) => {
 
@@ -41,6 +44,7 @@ export const orderSlice = createSlice({
         const price = state.pizzas[id].price;
         delete state.pizzas[id];
         state.orderTotal -= price * quantity;
+        state.itemsTotal -= quantity;
       }
       if(state.orderTotal < 0){
         state.orderTotal = 0;
@@ -62,6 +66,8 @@ export const orderSlice = createSlice({
         if(state.orderTotal < 0){
           state.orderTotal = 0;
         }
+        
+        state.itemsTotal -= 1;
 
       }
 
@@ -79,11 +85,21 @@ export const orderSlice = createSlice({
     setShowPersistingModal: (state, action) => {
 
       state.showPersistingModal = action.payload;
+      if(action.payload)
+      {
+        state.showOrdersContainer = false;
+      }
+
+    },
+    setShowOrdersContainer: (state, action) => {
+
+      state.showOrdersContainer = action.payload;
 
     },
     clean: (state, action) => {
       state.pizzas = {};
       state.orderTotal = 0;
+      state.itemsTotal = 0;      
     }
   },
 });
@@ -95,7 +111,8 @@ export const {
   setPersistingOrder, 
   setErrorPersistingOrder, 
   clean,
-  setShowPersistingModal
+  setShowPersistingModal,
+  setShowOrdersContainer
  } = orderSlice.actions;
 
 export const selectOrderPizzas = state => state.order.pizzas;
@@ -103,6 +120,8 @@ export const selectOrderTotal = state => state.order.orderTotal;
 export const selectErrorPersistingOrder = state => state.order.errorPersistingOrder;
 export const selectPersistingOrder = state => state.order.persistingOrder;
 export const selectShowPersistingModal = state => state.order.showPersistingModal;
+export const selectItemsTotal = state => state.order.itemsTotal;
+export const selectShowOrdersContainer = state => state.order.showOrdersContainer;
 
 export const persistOrder = data => dispatch => {
   

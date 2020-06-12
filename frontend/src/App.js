@@ -1,26 +1,37 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PizzaGrid from './features/pizza/PizzaGrid';
 import {
   loadPizzas
 } from './features/pizza/pizzaSlice';
+import OrderConfirmModal from './features/order/orderConfirmModal/OrderConfirmModal';
+
+import { selectShowPersistingModal } from './features/order/orderSlice';
 
 import './App.css';
-import Orders from './features/order/Orders';
+import NavBar from './features/navbar/NavBar';
 
 function App() {
 
   const dispatch = useDispatch();
   dispatch(loadPizzas());
 
+
+  const showModal = useSelector(selectShowPersistingModal);
+
   console.log(process.env.PATH);
 
   return (
     <div className="App">
       <header className="App-header">
-        <PizzaGrid />
-        <Orders />
+        <NavBar />
+        <div>
+          <PizzaGrid />
+        </div>
       </header>
+      <OrderConfirmModal 
+                visible={showModal}
+            /> 
     </div>
   );
 }

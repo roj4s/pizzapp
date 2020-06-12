@@ -3,10 +3,10 @@
 }
 
 .App-header {
-  min-height: 100vh;
+  min-height: 100vh;   
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
   font-size: calc(10px + 2vmin);
 }

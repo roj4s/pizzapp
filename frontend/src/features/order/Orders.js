@@ -7,7 +7,6 @@ import {
 } from './orderSlice';
 import { Typography } from '@material-ui/core';
 import OrderCardsContainer from './orderCardsContainer/OrderCardsContainer';
-import OrderConfirmModal from './orderConfirmModal/OrderConfirmModal';
 
 
 import { useDispatch } from 'react-redux';
@@ -20,7 +19,6 @@ export default function Orders(){
     const dispatch = useDispatch();
     const orderTotal = useSelector(selectOrderTotal);
     const pizzas = useSelector(selectOrderPizzas);
-    const showModal = useSelector(selectShowPersistingModal);
 
     return (
         <div className="OrdersContainer">
@@ -36,9 +34,7 @@ export default function Orders(){
                     <i>Cart is empty</i>
                 </Typography>)
             }
-            <OrderConfirmModal 
-                visible={showModal}
-            />            
+                       
         </div>
     );
 
