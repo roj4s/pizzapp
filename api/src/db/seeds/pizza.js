@@ -2,12 +2,10 @@ const seedsDataPath = process.env.SEEDS_DATA_PATH;
 const pizzaDataPath = `${seedsDataPath}/pizzas`;
 const pizzasData = require(pizzaDataPath);
 
-exports.seed = function(knex) {
+exports.seed = async function(knex) {
 
-  return knex('pizza').del()
-    .then(function () {
+  await knex('order_pizza').del();
+  await knex('pizza').del();
+  return await knex('pizza').insert(pizzasData);
 
-      return knex('pizza').insert(pizzasData);
-
-    });
-};
+}

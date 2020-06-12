@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
 const http = require('http');
-const app = require('../src/app');
+const bodyParser = require('body-parser');
 
-const PORT = 8001;
+const app = require('../src/app');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true  }));
+
+const PORT = process.env.port || 8001;
 
 app.set('port', PORT);
 
