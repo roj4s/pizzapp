@@ -3,13 +3,17 @@ const utilsFactory = require('../common/utilsFactory');
 const pizzaRepo = require('../pizza/repository');
 
 const table_name = 'order';
-const get = utilsFactory.repo_get_function(table_name);
+
+const get = async (query_object={}) => utilsFactory.repo_get_function(table_name, query_object)();
+
 const insert = async(data) => {
 
   const [order] = await knex(table_name)
     .insert({
       totalPrice: data.totalPrice,
-      currency: data.currency
+      currency: data.currency,
+      user: data.user.email,
+      address: data.user.address
     });
 
 

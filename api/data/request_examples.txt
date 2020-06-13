@@ -1,0 +1,7 @@
+# Insering an order
+curl -v -d '{"pizzas": [{"pizza": {"id": 250, "name": "just_a_pizza", "price":
+20}, "quantity": 10}, {"pizza": {"id": 251, "name": "another_pizza", "price":
+   22}, "quantity": 10}], "totalPrice": 240, "currency": "USD", "user":
+      {"email": "email@email.com", "address": "round the next corner",
+      "phone":"93945678", "name": "Luis"}}' -H 'Content-Type: application/json'
+      -X POST http://localhost:8001/order
