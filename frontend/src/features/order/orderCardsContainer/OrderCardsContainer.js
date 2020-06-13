@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { 
-    setShowPersistingModal,
-    persistOrder
+    setShowPersistingModal
 } from '../orderSlice';
 import OrderCard from '../OrderCard';
 import { Typography } from '@material-ui/core';
@@ -24,13 +23,7 @@ export default function OrderCardsContainer({ pizzas, orderTotal}){
     const triggerConfirmOrder = () => {
 
             dispatch(setShowPersistingModal(true));
-            const data = {
-                pizzas: Object.values(pizzas),
-                totalPrice: orderTotal,
-                currency: 'USD'
-            };
-            dispatch(persistOrder(data));
-
+            
         };
 
     return (

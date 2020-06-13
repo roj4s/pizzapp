@@ -1,0 +1,20 @@
+.OrderReviewContactInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center ;
+    padding: 20px;
+}
+
+.ContactInfoKey {
+    text-align: right;
+    font-weight: bold;
+}
+
+.ContactInfoValue {
+    text-align: left;
+}
+
+.ContactInfoTitle {
+    margin: 20px;
+}

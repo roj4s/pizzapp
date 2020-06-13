@@ -1,0 +1,48 @@
+.ModalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.ModalContent::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+.ModalContent::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    display: none;
+  }
+   
+.ModalContent::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+.ModalContent::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+.ModalContentInfo {
+    
+    padding: 20px
+}
+
+.Buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50%;
+    bottom: 0;
+    height: 50px;
+}
+
+.CloseIcon {
+    width: 100%;
+    top: 5; 
+    display: flex;
+    justify-content: flex-end;   
+}

@@ -1,0 +1,17 @@
+.FormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    padding: 10px;
+}
+
+.OrderContactInfoForm {
+    padding: 5px;
+    height: 100%;
+}
+
+.TextField {
+    margin: 20px;
+}

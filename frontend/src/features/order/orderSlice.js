@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import UserFieldValidators, { checkObjAllTrue } from './UserFieldValidators';
 import OrderApi from './api';
-
 
 export const orderSlice = createSlice({
   name: 'order',
@@ -11,7 +11,22 @@ export const orderSlice = createSlice({
     errorPersistingOrder: false,
     showPersistingModal: false,
     itemsTotal: 0,
-    showOrdersContainer: false
+    showOrdersContainer: false,
+    validUser: false,
+    user: {
+      email: '',
+      name: '',
+      phone: '',
+      address: ''
+    },
+    userValidField: {
+      email: false,
+      name: false,
+      phone: false,
+      address: false
+    },
+    taxRate: .1,
+    modalActiveStep: 0
   },
   reducers: {
     addOrderPizza: (state, action) => {
@@ -89,6 +104,9 @@ export const orderSlice = createSlice({
       {
         state.showOrdersContainer = false;
       }
+      if(!action.payload){
+        state.modalActiveStep = 0;
+      }
 
     },
     setShowOrdersContainer: (state, action) => {
@@ -96,13 +114,45 @@ export const orderSlice = createSlice({
       state.showOrdersContainer = action.payload;
 
     },
+    setUser: (state, action) => {
+
+      let userValidFields = {};
+      
+      Object.keys(state.user).forEach(k => {
+
+        userValidFields[k] = UserFieldValidators[k](action.payload[k]);
+        
+      });
+      state.user = action.payload;
+      console.log('user valid fields');
+      console.log(userValidFields);
+      state.userValidField = userValidFields;
+      state.validUser = checkObjAllTrue(userValidFields);
+
+    },
+    setUserValidField: (state, action) => {
+      if(state.userValidField.hasOwnProperty(action.payload)){
+        state.userValidField[action.payload] = true;
+      }      
+    },
     clean: (state, action) => {
       state.pizzas = {};
       state.orderTotal = 0;
       state.itemsTotal = 0;      
+    },
+    setNextModalActiveStep: (state, action) => {
+      state.modalActiveStep += 1;
+    },
+    setPrevModalActiveStep: (state, action) => {
+      state.modalActiveStep -= 1;
+    },
+    setModalActiveStep: (state, action) => {
+      state.modalActiveStep = action.payload;
     }
   },
 });
+
+
 
 export const { 
   addOrderPizza, 
@@ -112,7 +162,12 @@ export const {
   setErrorPersistingOrder, 
   clean,
   setShowPersistingModal,
-  setShowOrdersContainer
+  setShowOrdersContainer,
+  setUser,
+  setModalActiveStep,
+  setPrevModalActiveStep,
+  setNextModalActiveStep,
+  setUserValidField
  } = orderSlice.actions;
 
 export const selectOrderPizzas = state => state.order.pizzas;
@@ -122,14 +177,19 @@ export const selectPersistingOrder = state => state.order.persistingOrder;
 export const selectShowPersistingModal = state => state.order.showPersistingModal;
 export const selectItemsTotal = state => state.order.itemsTotal;
 export const selectShowOrdersContainer = state => state.order.showOrdersContainer;
+export const selectUser = state => state.order.user;
+export const selectTaxRate = state => state.order.taxRate;
+export const selectModalActiveStep = state => state.order.modalActiveStep;
+export const selectUserValidField = state => state.order.userValidField;
+export const selectvalidUser = state => state.order.validUser;
 
-export const persistOrder = data => dispatch => {
+export const persistOrder = (data) => dispatch => {
   
   dispatch(setErrorPersistingOrder(false));
   dispatch(setPersistingOrder(true));
 
   return OrderApi.createOrder(data).then(response => {
-    console.log(response);
+    
     if(response.success){
       dispatch(setErrorPersistingOrder(false));
       dispatch(clean());
