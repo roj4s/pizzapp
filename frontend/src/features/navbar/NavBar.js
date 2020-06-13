@@ -28,28 +28,30 @@ export default function NavBar(){
 
     return (
         <div className="NavBar">
-          <AppBar position="static">
-            <Toolbar>
-              <Typography variant="h6">
-                Pizza-Task
-              </Typography>
-              <div className="NavBarCartButtons">
-                <IconButton  
-                    className="CartButton"                  
-                    aria-label="cart items" 
-                    color="inherit"
-                    onClick={toggleShowOrders}
-                    >
-                    <Badge badgeContent={totalItems} color="secondary">
-                        <ShoppingCartIcon />                        
-                    </Badge>                    
-                </IconButton>
-                   {
-                    showOrdersContainer && <Orders />
-                   }
-                </div>
-            </Toolbar>
-          </AppBar>
+            <AppBar position="static">
+              <div className="NavBarContent">
+                <Toolbar>
+                  <Typography variant="h6">
+                    Pizza-Task
+                  </Typography>
+                  <div className="NavBarCartButtons">
+                    <IconButton  
+                        className="CartButton"                  
+                        aria-label="cart items" 
+                        color="inherit"
+                        onClick={toggleShowOrders}
+                        >
+                        <Badge badgeContent={totalItems} color="secondary">
+                            <ShoppingCartIcon />                        
+                        </Badge>                    
+                    </IconButton>
+                      {
+                        showOrdersContainer && <Orders />
+                      }
+                    </div>
+                </Toolbar>
+               </div> 
+            </AppBar>
         </div>
       );
 
