@@ -9,19 +9,23 @@ import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { useDispatch } from 'react-redux';
 
+import { getCurrentViewPortSize } from '../common/common';
+
 import PizzaApi from './api';
 
 import {
   addOrderPizza
 } from '../order/orderSlice';
 
+const vpSize = getCurrentViewPortSize();
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 200
+    width: vpSize.width < 600 ? 300 : 200
   },
   media: {
     height: 150,
+    objectFit: 'cover'
   },
   addIcon: {
       marginLeft: 'auto'

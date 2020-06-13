@@ -19,7 +19,6 @@ function App() {
 
   const showModal = useSelector(selectShowPersistingModal);
 
-  console.log(process.env.PATH);
 
   return (
     <div className="App">
