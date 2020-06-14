@@ -68,7 +68,7 @@ export default function OrderCard(props){
                 </Typography>
 
                 <div 
-                className={classes.buttonsCardActions}
+                    className={classes.buttonsCardActions}
                 >
                     <IconButton 
                         onClick={()=>dispatch(addOrderPizza(pizza))}

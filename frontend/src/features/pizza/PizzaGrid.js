@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import PizzaCard  from './PizzaCard'; 
+import PizzaCard  from './pizzaCard/PizzaCard'; 
 
 import {
     selectPizzas, selectErrorFetching
