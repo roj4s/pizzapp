@@ -27,3 +27,14 @@ services:
         SEEDS_DATA_PATH: '/home/node/app/data/datafinity_data_extraction'
     volumes:
         - ./api/src:/home/node/app/src
+  frontend:
+    build: ./frontend
+    ports:
+        - 3000:3000
+    links:
+      - api
+    environment:
+      CHOKIDAR_USEPOLLING: 'true'
+      PORT: 3000
+    volumes:
+        - ./frontend/src:/home/node/app/src
