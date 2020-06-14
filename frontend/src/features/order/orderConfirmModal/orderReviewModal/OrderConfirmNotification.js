@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import NotificationPanel from '../../../common/notificationPanel/NotificationPanel';
+import LoadingIcon from '../../../common/loadingIcon/LoadingIcon';
 
 import {
     selectPersistingOrder,
@@ -16,7 +17,9 @@ export default function OrderConfirmNotification(){
     return (
         <div>
             {
-                persistingOrder && (<p>Submiting Order </p>)
+                persistingOrder && (
+                    <LoadingIcon />
+                )
             }
             {
                 !persistingOrder && errorPersistingOrder && (

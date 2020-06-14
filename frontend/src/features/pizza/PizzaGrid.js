@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PizzaCard  from './pizzaCard/PizzaCard'; 
+import LoadingIcon from '../common/loadingIcon/LoadingIcon';
+import NotificationPanel from '../common/notificationPanel/NotificationPanel';
 
 import {
     selectPizzas, selectErrorFetching
@@ -24,7 +26,13 @@ export default function PizzaGrid(){
                                 pizza={pizza}
                             />
                         </span>)
-                    ) : (errorFetching ? (<div>Something went wrong fetching data </div>) : (<div><p> Loading ...</p></div>))
+                    ) : (errorFetching ? (                        
+                            <NotificationPanel 
+                                success={false}
+                                message="Error fetching data ;(" />
+                        ) : (
+                                <LoadingIcon />
+                            ))
                 }    
             </div>
               
