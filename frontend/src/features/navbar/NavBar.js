@@ -32,7 +32,7 @@ export default function NavBar(){
               <div className="NavBarContent">
                 <Toolbar>
                   <Typography variant="h6">
-                    Pizza-Task
+                    PizzaVery
                   </Typography>
                   <div className="NavBarCartButtons">
                     <IconButton  
@@ -45,13 +45,15 @@ export default function NavBar(){
                             <ShoppingCartIcon />                        
                         </Badge>                    
                     </IconButton>
-                      {
-                        showOrdersContainer && <Orders />
-                      }
+                      
                     </div>
+                    
                 </Toolbar>
                </div> 
             </AppBar>
+            {
+                        showOrdersContainer && <Orders />
+                      }
         </div>
       );
 

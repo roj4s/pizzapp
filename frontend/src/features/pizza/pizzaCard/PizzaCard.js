@@ -23,7 +23,7 @@ const vpSize = getCurrentViewPortSize();
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: vpSize.width < 600 ? 350 : 300
+    width: vpSize.width < 600 ? vpSize.width * .9 : 300
   },
   media: {
     height: 150,
