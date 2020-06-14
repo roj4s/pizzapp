@@ -7,9 +7,10 @@ const app = require('../src/app');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true  }));
 
-const PORT = process.env.port || 8001;
+const PORT = process.env.PORT || 8001;
 
 app.set('port', PORT);
 
 const server = http.createServer(app);
+console.log("API listening  on port " + PORT)
 server.listen(PORT);

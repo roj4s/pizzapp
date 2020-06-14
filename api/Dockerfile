@@ -4,13 +4,15 @@ USER node
 RUN mkdir /home/node/app
 WORKDIR /home/node/app
 COPY package.json /home/node/app
-RUN npm install
+COPY yarn.lock /home/node/app
+RUN yarn install
 
 COPY public /home/node/app/public
 COPY data /home/node/app/data
 COPY bin /home/node/app/bin
 COPY src /home/node/app/src
+COPY ./ecosystem.config.js /home/node/app/
 
 EXPOSE 8001
 
-CMD npm run knex migrate:latest && npm run knex seed:run && npm start
+CMD yarn knex migrate:latest && yarn knex seed:run && yarn start

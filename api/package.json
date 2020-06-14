@@ -4,7 +4,8 @@
   "description": "Simple RESTFul API for a pizza delivery web system",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect ./bin/www",
+    "start": "pm2 start --no-daemon",
+    "start:dev": "nodemon --inspect ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
     "knex": "./bin/knex"
   },
@@ -15,7 +16,8 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "knex": "^0.21.1",
-    "mysql2": "^2.1.0"
+    "mysql2": "^2.1.0",
+    "pm2": "^4.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
