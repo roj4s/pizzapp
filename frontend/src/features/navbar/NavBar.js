@@ -28,9 +28,11 @@ export default function NavBar(){
 
     return (
         <div className="NavBar">
-            <AppBar position="static">
+            <AppBar position="static">              
               <div className="NavBarContent">
+              
                 <Toolbar>
+                <img className="NavBarBrand" src="favicon.ico" />
                   <Typography variant="h6">
                     PizzaVery
                   </Typography>

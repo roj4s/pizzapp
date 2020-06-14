@@ -7,7 +7,7 @@
 }
 
 .NavBar {
-    width: 100vw;
+    width: 100%;
 }
 
 .NavBarContent {
@@ -15,4 +15,10 @@
     padding-left: 40px;
     padding-right: 40px;
 
+}
+
+.NavBarBrand {
+    width: 38px;
+    height: 38px;
+    margin: 10px;
 }
