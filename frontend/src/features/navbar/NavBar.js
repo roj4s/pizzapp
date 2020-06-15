@@ -28,7 +28,7 @@ export default function NavBar(){
 
     return (
         <div className="NavBar">
-            <AppBar position="static">              
+            <AppBar position="fixed">              
               <div className="NavBarContent">
               
                 <Toolbar>
@@ -51,11 +51,12 @@ export default function NavBar(){
                     </div>
                     
                 </Toolbar>
-               </div> 
-            </AppBar>
-            {
+               </div>
+               {
                         showOrdersContainer && <Orders />
-                      }
+                      } 
+            </AppBar>
+            
         </div>
       );
 

@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <NavBar />
-        <div>
+        <div className="PizzaGridContainer">
           <PizzaGrid />
         </div>
       </header>

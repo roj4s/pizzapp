@@ -130,12 +130,15 @@ export default function OrderConfirmModal({visible}){
     const modalCustomStyles = {
         content: vpSize.width > 600 ? {
           width: '50%',
+          height: '50%',
           left: '25%',
+          top: '10%',
+          zIndex: 100,
           padding: 5
         } : {
             width: '80%',
              left:'5%',
-             top:'5%',
+             top:'10%',
              height: '80%',
              padding: '20px'
             }

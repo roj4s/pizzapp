@@ -5,9 +5,10 @@
 .OrdersContainer {
     width: 400px;
     height: 600px;    
-    position: absolute;
+    position: fixed;
     right: 0;
-    margin-right: 10px;    
+    margin-right: 5px; 
+    top: 64px;   
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -24,7 +25,8 @@
 @media only screen and (max-width: 600px) {
 
     .OrdersContainer{
-        width: 97vw;
+        width: 98vw;
+        top: 58px;
     }
     
 
