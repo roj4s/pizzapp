@@ -5,3 +5,15 @@
     justify-content: center;
     align-items: center;
 }
+
+.PizzaCardPriceTag{
+
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+
+}
+
+.PizzaCardPriceTag  * {
+    margin: 5px;
+}

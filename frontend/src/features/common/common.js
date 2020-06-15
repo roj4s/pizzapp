@@ -7,3 +7,5 @@ export const getCurrentViewPortSize = ()=>{
 
 }
 
+export const USD_EUR_EXCHANGE_RATE = 0.88;
+

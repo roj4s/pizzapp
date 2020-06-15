@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { useDispatch } from 'react-redux';
 
-import { getCurrentViewPortSize } from '../../common/common';
+import { getCurrentViewPortSize, USD_EUR_EXCHANGE_RATE } from '../../common/common';
 
 import PizzaApi from '../api';
 import './PizzaCard.css'
@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     height: 50,
     overflow: 'hidden',
     textAlign: 'start'
+  },
+  margin: {
+    margin: 3
   }
 }));
 
@@ -65,13 +68,21 @@ export default function PizzaCard(props) {
       </CardContent>
       <CardActions >
         <div className="CustomCardActions">
-          <Typography 
-            variant="h6"
-            component="h6"
-            color="textSecondary"
-            >
-            ${pizza.price}
-          </Typography>      
+          <div className="PizzaCardPriceTag">
+            <Typography 
+              variant="h6"
+              component="h6"
+              color="textSecondary"
+              className={classes.margin}
+              >
+              &euro; {pizza.price}
+            </Typography> 
+            <Typography
+               className={classes.margin}
+               color="textSecondary" 
+               variant="subtitle2"
+               >(${Math.floor(pizza.price / USD_EUR_EXCHANGE_RATE * 100) / 100})</Typography>   
+          </div>  
           <IconButton
               className={classes.addIcon} 
               onClick={()=>{ dispatch(addOrderPizza(props.pizza)); }}

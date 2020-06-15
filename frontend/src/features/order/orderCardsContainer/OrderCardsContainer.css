@@ -33,3 +33,10 @@
 .ToolBar button {
   margin-left: auto;
 }
+
+.OrderCardsPriceTag {
+
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}

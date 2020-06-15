@@ -7,12 +7,16 @@ import OrderCard from '../OrderCard';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { USD_EUR_EXCHANGE_RATE } from '../../common/common';
 
 import './OrderCardsContainer.css';
 
 const useStyles = makeStyles((theme) => ({
     button: {
         marginLeft: 'auto'
+    },
+    margin: {
+      margin: 3
     }
   }));
 
@@ -37,10 +41,15 @@ export default function OrderCardsContainer({ pizzas, orderTotal}){
                 ))}
             </div>
             <div className="ToolBar">
-                <div>
-                    <Typography variant="subtitle2" color="textSecondary" component="span">
-                        Total: {`${Math.floor(orderTotal * 100) / 100}`}  
+                <div class="OrderCardsPriceTag">
+                    <Typography variant="h6" color="textPrimary" component="span">
+                        Subtotal: &euro; {`${Math.floor(orderTotal * 100) / 100}`}  
                     </Typography>
+                    <Typography
+                        className={classes.margin}
+                        color="textSecondary" 
+                        variant="subtitle2"
+                        >(${Math.floor(orderTotal / USD_EUR_EXCHANGE_RATE* 100) / 100})</Typography>
                 </div>
                 <Button 
                     className={classes.button}
