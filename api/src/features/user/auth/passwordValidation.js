@@ -18,7 +18,15 @@ const encodePassword = (password) => {
     };
 };
 
+const isValid = (passwordTextPlain, salt, passwordHashed) => {
+    let hash = crypto.createHmac('sha512', salt);
+    hash.update(passwordTextPlain);
+    let value = hash.digest('hex');
+    return value === passwordHashed;
+};
+
 module.exports = {
     getNewSalt,
-    encodePassword
+    encodePassword,
+    isValid
 };

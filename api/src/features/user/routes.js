@@ -2,6 +2,8 @@ const router = require('express').Router();
 const repo = require('./repository');
 const utilsFactory = require('../common/utilsFactory');
 const cryptPassword = require('./auth/passwordValidation');
+const authRoutes = require('./auth/routes');
+const auth = require('./auth/initAuth');
 
 router.get('/:id', async (req, res) => {
 
@@ -10,7 +12,7 @@ router.get('/:id', async (req, res) => {
 
 });
 
-router.get('/', utilsFactory.route_get_function(repo));
+router.get('/', auth.authenticate, utilsFactory.route_get_function(repo));
 
 router.post('/', async (req, res) => {
 
@@ -36,6 +38,8 @@ router.post('/', async (req, res) => {
      }
 
 });
+
+router.use('/auth', authRoutes);
 
 
 module.exports = router;

@@ -1,6 +1,8 @@
 const express = require('express');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
+const initAuth = require('./features/user/auth/initAuth');
 
 const app = express();
 
@@ -19,6 +21,8 @@ app.use((req, res, next) => {
 
 });
 
+app.use(session({ secret: "any_random_secret" }));
+initAuth.init(app);
 
 app.use('/', indexRouter);
 

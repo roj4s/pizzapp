@@ -7,8 +7,17 @@ curl -v -d '{"pizzas": [{"pizza": {"id": 250, "name": "just_a_pizza", "price":
       -X POST http://localhost:8001/order
    
 # Inserting a user
-
 curl -X POST --header "Content-Type: application/json" 
      --data '{"email": "rojas@mail.com", "phone": 908768,
       "address": "asdasdasd", "name": "Luis Rojas", "password": "lamisma"}' 
       http://localhost:8001/user
+
+# Login
+curl --cookie-jar /tmp/cookies  -v -X POST \
+    --header "Content-Type: application/json" \ 
+    --data '{"email": "yadi@mail.com", "password": "lamisma"}' \
+    http://localhost:8001/user/auth/login
+
+# Logout
+curl --cookie /tmp/cookies  -v \    
+    http://localhost:8001/user/auth/logout
