@@ -5,3 +5,10 @@ curl -v -d '{"pizzas": [{"pizza": {"id": 250, "name": "just_a_pizza", "price":
       {"email": "email@email.com", "address": "round the next corner",
       "phone":"93945678", "name": "Luis"}}' -H 'Content-Type: application/json'
       -X POST http://localhost:8001/order
+   
+# Inserting a user
+
+curl -X POST --header "Content-Type: application/json" 
+     --data '{"email": "rojas@mail.com", "phone": 908768,
+      "address": "asdasdasd", "name": "Luis Rojas", "password": "lamisma"}' 
+      http://localhost:8001/user

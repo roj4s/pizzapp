@@ -4,7 +4,8 @@ const router = express.Router();
 const features = [
   'pizza',
   'image',
-  'order'
+  'order',
+  'user'
 ];
 
 features.forEach(ft=>router.use(`/${ft}`, require(`../features/${ft}/routes`)));
