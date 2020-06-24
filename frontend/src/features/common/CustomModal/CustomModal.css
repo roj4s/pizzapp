@@ -1,0 +1,17 @@
+.ModalCloseIcon {
+        width: 100%;
+        top: 5; 
+        display: flex;
+        justify-content: flex-end;   
+}
+
+.CustomModalContent {
+
+    display: flex;
+    width: 100%;
+    height: 90%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+}

@@ -41,7 +41,7 @@ export default function OrderCardsContainer({ pizzas, orderTotal}){
                 ))}
             </div>
             <div className="ToolBar">
-                <div class="OrderCardsPriceTag">
+                <div className="OrderCardsPriceTag">
                     <Typography variant="h6" color="textPrimary" component="span">
                         Subtotal: &euro; {`${Math.floor(orderTotal * 100) / 100}`}  
                     </Typography>

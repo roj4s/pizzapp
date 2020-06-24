@@ -12,6 +12,7 @@ export const orderSlice = createSlice({
     showPersistingModal: false,
     itemsTotal: 0,
     showOrdersContainer: false,
+    showUserMenu: false,
     validUser: false,
     user: {
       email: '',
@@ -99,6 +100,8 @@ export const orderSlice = createSlice({
     },
     setShowPersistingModal: (state, action) => {
 
+      console.log(`Setting to ${action.payload}`);
+
       state.showPersistingModal = action.payload;
       if(action.payload)
       {
@@ -112,6 +115,17 @@ export const orderSlice = createSlice({
     setShowOrdersContainer: (state, action) => {
 
       state.showOrdersContainer = action.payload;
+      if(action.payload){
+        state.showUserMenu = false;
+      }
+
+    },
+    setShowUserMenu: (state, action) => {
+
+      state.showUserMenu = action.payload;
+      if(action.payload){
+        state.showOrdersContainer = false;
+      }
 
     },
     setUser: (state, action) => {
@@ -167,7 +181,8 @@ export const {
   setModalActiveStep,
   setPrevModalActiveStep,
   setNextModalActiveStep,
-  setUserValidField
+  setUserValidField,
+  setShowUserMenu
  } = orderSlice.actions;
 
 export const selectOrderPizzas = state => state.order.pizzas;
@@ -182,6 +197,7 @@ export const selectTaxRate = state => state.order.taxRate;
 export const selectModalActiveStep = state => state.order.modalActiveStep;
 export const selectUserValidField = state => state.order.userValidField;
 export const selectvalidUser = state => state.order.validUser;
+export const selectShowUserMenu = state => state.order.showUserMenu;
 
 export const persistOrder = (data) => dispatch => {
   

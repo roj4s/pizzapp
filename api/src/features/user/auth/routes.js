@@ -4,7 +4,8 @@ const { authenticate } = require('./initAuth');
 
 const sendUserData = (req, res) => {
     res.send({ 
-        email: req.user.email 
+        email: req.user.email,
+        name: req.user.name 
     });
 }
 

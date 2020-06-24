@@ -4,8 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import './OrderContactInfoForm.css';
 
-
-
 import {
     selectUser,
     setUser,

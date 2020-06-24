@@ -5,19 +5,38 @@ import {
   loadPizzas
 } from './features/pizza/pizzaSlice';
 import OrderConfirmModal from './features/order/orderConfirmModal/OrderConfirmModal';
+import FloatingSnackBar from './features/common/FloatingSnackBar/FloatingSnackBar';
 
-import { selectShowPersistingModal } from './features/order/orderSlice';
+import { 
+  selectShowPersistingModal
+} from './features/order/orderSlice';
+
+import { 
+  selectShowLoginForm
+   } from './features/user/userSlice';
+
+import {
+  selectNotificationShow,
+  selectNotificationSeverity,
+  selectNotificationMessage
+} from './features/common/FloatingSnackBar/floatingNotificationSlice';
 
 import './App.css';
 import NavBar from './features/navbar/NavBar';
+import UserLoginFormModal from './features/user/UserLoginForm/UserLoginFormModal';
 
 function App() {
 
   const dispatch = useDispatch();
   dispatch(loadPizzas());
+  
+  const showOrderConfirmationModal = useSelector(selectShowPersistingModal);
+  const showLoginForm = useSelector(selectShowLoginForm);
+  const showSnackNotification = useSelector(selectNotificationShow);
+  const floatNotificationSeverity = useSelector(selectNotificationSeverity);
+  const floatNotificationMessage = useSelector(selectNotificationMessage);
 
-
-  const showModal = useSelector(selectShowPersistingModal);
+  console.log(showOrderConfirmationModal);
 
 
   return (
@@ -28,9 +47,13 @@ function App() {
           <PizzaGrid />
         </div>
       </header>
-      <OrderConfirmModal 
-                visible={showModal}
-            /> 
+      {showOrderConfirmationModal && <OrderConfirmModal /> 
+      }
+      { showLoginForm && <UserLoginFormModal />}
+      { showSnackNotification && <FloatingSnackBar 
+                                    message={floatNotificationMessage}
+                                    severity={floatNotificationSeverity}
+                                        />}
     </div>
   );
 }
