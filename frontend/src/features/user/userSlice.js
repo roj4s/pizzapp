@@ -5,6 +5,10 @@ import {
 } from '../common/loadingIcon/loadingSlice';
 
 import {
+  setModalActiveStep
+} from '../order/orderSlice';
+
+import {
   setNotificationMessage,
   setNotificationSeverity, 
   setShowNotification
@@ -69,7 +73,8 @@ export const userSlice = createSlice({
           dispatch(setNotificationMessage(`Welcome back ${user.name}`));
           dispatch(setShowNotification(true));
           dispatch(setNotificationSeverity("success"));
-          dispatch(setLoading(false))
+          dispatch(setLoading(false));
+          dispatch(setModalActiveStep(1));
         });            
       }
       else {

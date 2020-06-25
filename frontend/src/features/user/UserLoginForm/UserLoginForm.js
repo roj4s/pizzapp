@@ -12,14 +12,11 @@ import {
     selectLoading
 } from '../../common/loadingIcon/loadingSlice';
 
-import {
-    selectUser, toggleShowLoginForm
-} from '../userSlice';
-
 import LoadingIcon from '../../common/loadingIcon/LoadingIcon';
 
 import {
-    logIn
+    logIn,
+    selectUser
 } from '../userSlice';
 
 import './UserLoginForm.css';
@@ -75,15 +72,13 @@ export default function UserLoginForm() {
 
     return (
         <div className="UserLoginForm">
-            {
-                loading && <LoadingIcon /> 
-            }
-            {
-                !loading && 
-                    submited && 
-                    !sessUser.email && 
-                    <Alert severity="error">Couldn't login, check credentials</Alert>
-            }
+                { loading && <LoadingIcon />  }
+                {
+                    !loading && 
+                        submited && 
+                        !sessUser.email && 
+                        <Alert severity="error">Couldn't login, check credentials</Alert>
+                }
             
             <AccountCircleRoundedIcon 
                 className={classes.icon}

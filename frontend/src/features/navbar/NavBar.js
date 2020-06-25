@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -48,7 +48,7 @@ export default function NavBar(){
               <div className="NavBarContent">
               
                 <Toolbar>
-                <img className="NavBarBrand" src="favicon.ico" />
+                <img alt='brand' className="NavBarBrand" src="favicon.ico" />
                   <Typography variant="h6">
                     PizzaVery
                   </Typography>

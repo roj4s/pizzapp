@@ -11,7 +11,6 @@ const useStyle = makeStyles((theme) => ({
     top: {
         color: '#1a90ff',
         animationDuration: '550ms',
-        position: 'absolute',
         left: 0,
       },
     circle: {

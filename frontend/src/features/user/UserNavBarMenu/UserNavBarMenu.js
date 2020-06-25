@@ -11,7 +11,6 @@ import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 
 import {
-    logIn, 
     logOut,
     toggleShowLoginForm
 } from '../userSlice';

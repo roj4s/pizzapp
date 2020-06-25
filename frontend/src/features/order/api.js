@@ -47,14 +47,15 @@ class OrderApi {
         }
 
         return fetch(`${API_URL}/order`, {
-            method: 'POST',          
+            method: 'POST',               
+            credentials: 'include',                   
             headers: {
             'Content-Type': 'application/json'
             },          
             body: JSON.stringify(data)
         }).then(response => {
 
-            if(response.status === 404 || response.status === 500){
+            if(response.status !== 200 && response.status !== 201){
                 return {
                     success: false,
                     data: response.status

@@ -1,11 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
-    selectUser,
     selectOrderPizzas,
     selectOrderTotal,
     selectTaxRate
 } from '../../orderSlice';
+
+import {
+    selectUser
+} from '../../../user/userSlice';
 
 import { 
     Divider, 

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import UserFieldValidators, { checkObjAllTrue } from './UserFieldValidators';
 import OrderApi from './api';
 
 export const orderSlice = createSlice({
@@ -13,19 +12,6 @@ export const orderSlice = createSlice({
     itemsTotal: 0,
     showOrdersContainer: false,
     showUserMenu: false,
-    validUser: false,
-    user: {
-      email: '',
-      name: '',
-      phone: '',
-      address: ''
-    },
-    userValidField: {
-      email: false,
-      name: false,
-      phone: false,
-      address: false
-    },
     taxRate: .1,
     modalActiveStep: 0
   },
@@ -107,8 +93,8 @@ export const orderSlice = createSlice({
       {
         state.showOrdersContainer = false;
       }
-      if(!action.payload){
-        state.modalActiveStep = 0;
+      else{
+        state.modalActiveStep = 1;
       }
 
     },
@@ -128,31 +114,10 @@ export const orderSlice = createSlice({
       }
 
     },
-    setUser: (state, action) => {
-
-      let userValidFields = {};
-      
-      Object.keys(state.user).forEach(k => {
-
-        userValidFields[k] = UserFieldValidators[k](action.payload[k]);
-        
-      });
-      state.user = action.payload;
-      console.log('user valid fields');
-      console.log(userValidFields);
-      state.userValidField = userValidFields;
-      state.validUser = checkObjAllTrue(userValidFields);
-
-    },
-    setUserValidField: (state, action) => {
-      if(state.userValidField.hasOwnProperty(action.payload)){
-        state.userValidField[action.payload] = true;
-      }      
-    },
     clean: (state, action) => {
       state.pizzas = {};
       state.orderTotal = 0;
-      state.itemsTotal = 0;      
+      state.itemsTotal = 0;     
     },
     setNextModalActiveStep: (state, action) => {
       state.modalActiveStep += 1;
@@ -161,6 +126,7 @@ export const orderSlice = createSlice({
       state.modalActiveStep -= 1;
     },
     setModalActiveStep: (state, action) => {
+      console.log(`Setting modal active step ${action.payload}`);
       state.modalActiveStep = action.payload;
     }
   },
@@ -177,11 +143,9 @@ export const {
   clean,
   setShowPersistingModal,
   setShowOrdersContainer,
-  setUser,
   setModalActiveStep,
   setPrevModalActiveStep,
   setNextModalActiveStep,
-  setUserValidField,
   setShowUserMenu
  } = orderSlice.actions;
 
@@ -192,11 +156,8 @@ export const selectPersistingOrder = state => state.order.persistingOrder;
 export const selectShowPersistingModal = state => state.order.showPersistingModal;
 export const selectItemsTotal = state => state.order.itemsTotal;
 export const selectShowOrdersContainer = state => state.order.showOrdersContainer;
-export const selectUser = state => state.order.user;
 export const selectTaxRate = state => state.order.taxRate;
 export const selectModalActiveStep = state => state.order.modalActiveStep;
-export const selectUserValidField = state => state.order.userValidField;
-export const selectvalidUser = state => state.order.validUser;
 export const selectShowUserMenu = state => state.order.showUserMenu;
 
 export const persistOrder = (data) => dispatch => {

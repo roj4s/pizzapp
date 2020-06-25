@@ -3,24 +3,15 @@ const repo = require('./repository');
 const orderRepo = require('../order/repository');
 const userRepo = require('../user/repository');
 const utilsFactory = require('../common/utilsFactory');
+const { authenticate } = require('../user/auth/initAuth');
 
-router.get('/', utilsFactory.route_get_function(repo));
+router.get('/', authenticate, utilsFactory.route_get_function(repo));
 
-router.post('/', async(req, res) => {
+router.post('/', authenticate, async(req, res) => {
 
-  try{
+  try{    
 
-    let [user] = await userRepo.get({
-      email: req.body.user.email
-    });
-
-
-    if(!user){
-
-      user = await userRepo.insert(req.body.user);
-
-    }
-
+    req.body.user = req.user;
     orderRepo.insert(req.body)
       .then(id=>{
         if(id)

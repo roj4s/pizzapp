@@ -5,20 +5,20 @@ import {
     persistOrder,
     selectOrderPizzas,
     selectOrderTotal,
-    selectUser,
     selectModalActiveStep,
     setNextModalActiveStep,
-    setPrevModalActiveStep,
-    setModalActiveStep,
-    selectvalidUser    
+    setModalActiveStep,  
 } from '../orderSlice';
 
-import { makeStyles } from '@material-ui/core/styles';
+import UserLoginForm from '../../user/UserLoginForm/UserLoginForm';
+import {
+  selectUser
+} from '../../user/userSlice';
+
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import OrderContactInfoForm from './orderContactInfoForm/OrderContactInfoForm';
 
 import OrderReviewModal from './orderReviewModal/OrderReviewModal';
 
@@ -30,16 +30,6 @@ import CustomModal from '../../common/CustomModal/CustomModal';
 
 Modal.setAppElement('#root');
 
-const useStyles = makeStyles((theme) => ({    
-    backButton: {
-      marginRight: theme.spacing(1),
-    },
-    closeButton: {
-      width: 40,
-      height: 40      
-    }
-  }));
-
   const getSteps = () => {
     return ['Contact Information', 'Review Order', 'Order Confirmation'];
   }
@@ -47,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   const getStepContent =(stepIndex) => {
     switch (stepIndex) {
       case 0:
-        return <OrderContactInfoForm />;
+        return <UserLoginForm />;
       case 1:
         return <OrderReviewModal />;
       case 2:
@@ -68,9 +58,11 @@ export default function OrderConfirmModal(){
       pizzas: useSelector(selectOrderPizzas)
     };
 
-    const classes = useStyles();
+    if(!data.user.email){
+      dispatch(setModalActiveStep(0));
+    }
+
     const activeStep = useSelector(selectModalActiveStep);
-    const validUser = useSelector(selectvalidUser);
     const steps = getSteps();
 
     const handleNext = () => {
@@ -88,10 +80,6 @@ export default function OrderConfirmModal(){
           dispatch(setModalActiveStep(3));
         }   
 
-    };
-
-    const handleBack = () => {
-        dispatch(setPrevModalActiveStep());
     };
 
     const getNextButtonText = (currentStep) => {
@@ -124,32 +112,24 @@ export default function OrderConfirmModal(){
                   getStepContent(activeStep)
                 }
               </div>
-              
-          </div> 
-          <div className="OrderConfirmModalButtons">
-                {
-                  activeStep === 1 && (
-                              <Button
-                                  disabled={activeStep === 0 || activeStep === 2}
-                                  onClick={handleBack}
-                                  className={classes.backButton}
-                              >
-                                  Back
-                              </Button>)
-                }
-                {
-                  activeStep !== 3 && (
-                    <Button 
-                      disabled={!validUser} 
-                      variant="contained" 
-                      color="primary" 
-                      onClick={handleNext}>
-                        {getNextButtonText(activeStep)}
-                    </Button>
-                  )
-                }
-            </div>
-          </div>
+              {
+                activeStep !== 0 &&
+                <div className="OrderConfirmModalButtons">
+                      {
+                        activeStep !== 3 && (
+                          <Button 
+                            disabled={!data.user.email} 
+                            variant="contained" 
+                            color="primary" 
+                            onClick={handleNext}>
+                              {getNextButtonText(activeStep)}
+                          </Button>
+                        )
+                      }
+                  </div>
+            }              
+          </div>           
+        </div>
       </CustomModal>);
 
 }

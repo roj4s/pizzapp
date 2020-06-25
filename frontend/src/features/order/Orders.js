@@ -9,8 +9,6 @@ import OrderCardsContainer from './orderCardsContainer/OrderCardsContainer';
 
 import './Order.css';
 
-
-
 export default function Orders(){
 
     const orderTotal = useSelector(selectOrderTotal);
