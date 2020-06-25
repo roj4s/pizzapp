@@ -4,7 +4,7 @@
   "description": "Simple RESTFul API for a pizza delivery web system",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start --no-daemon --watch",
+    "start": "./bin/knex migrate:latest && ./bin/knex seed:run &&  pm2 start --no-daemon --watch",
     "start:dev": "nodemon --inspect ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
     "knex": "./bin/knex"

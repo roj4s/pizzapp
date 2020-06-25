@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const repo = require('./repository');
 const orderRepo = require('../order/repository');
-const userRepo = require('../user/repository');
 const utilsFactory = require('../common/utilsFactory');
 const { authenticate } = require('../user/auth/initAuth');
 

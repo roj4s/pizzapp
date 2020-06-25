@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Typography } from "@material-ui/core";
 import { useDispatch, useSelector } from 'react-redux';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -82,7 +82,8 @@ export default function UserLoginForm() {
             
             <AccountCircleRoundedIcon 
                 className={classes.icon}
-                color="primary"/>   
+                color="primary"/>  
+                <Typography variant="overline">Email: user@email.com, Password: password</Typography> 
                 <div className="UserLoginFormInputs">
                     <TextField
                         className={classes.textField}
@@ -91,10 +92,12 @@ export default function UserLoginForm() {
                         onChange={handleChange}
                         label="Email"    
                         fullWidth     
-                        variant="outlined"                              
+                        variant="outlined"  
+                        placeholder="user@email.com"                            
                     />
                     <TextField
-                        id="password"  
+                        id="password" 
+                        placeholder="password" 
                         fullWidth                     
                         value={user.password}
                         onChange={handleChange}

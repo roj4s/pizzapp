@@ -15,4 +15,4 @@ COPY ./ecosystem.config.js /home/node/app/
 
 EXPOSE 8001
 
-CMD yarn knex migrate:latest && yarn knex seed:run && yarn start
+CMD yarn start
